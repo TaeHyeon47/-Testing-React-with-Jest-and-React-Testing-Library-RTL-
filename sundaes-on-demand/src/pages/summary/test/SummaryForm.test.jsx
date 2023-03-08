@@ -1,5 +1,6 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import SummaryForm from '../SummaryForm';
+import userEvent from '@testing-library/user-event';
 
 // My Code
 // test('agreement checkbox testing', async () => {
@@ -33,7 +34,9 @@ test('Initial conditions', () => {
   expect(confirmButton).toBeDisabled();
 });
 
-test('Checkbox enables button on first click and disables on second click', () => {
+test('Checkbox enables button on first click and disables on second click', async () => {
+  const user = userEvent.setup();
+
   render(<SummaryForm />);
 
   const checkbox = screen.getByRole('checkbox', {
@@ -42,9 +45,19 @@ test('Checkbox enables button on first click and disables on second click', () =
 
   const confirmButton = screen.getByRole('button', { name: /confirm order/i });
 
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(confirmButton).toBeEnabled();
 
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(confirmButton).toBeDisabled();
+});
+
+test('popover responds to hover', async () => {
+  const user = userEvent.setup();
+
+  // popover starts out hidden
+
+  // popover appears on mouseover of checkbox label
+
+  // popover disappears when we mouse out
 });
