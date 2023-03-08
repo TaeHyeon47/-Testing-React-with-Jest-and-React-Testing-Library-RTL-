@@ -29,7 +29,7 @@ test('Initial conditions', () => {
   });
   expect(checkbox).not.toBeChecked();
 
-  const confirmButton = screen.getByRole('button', { name: /confirm oreder/i });
+  const confirmButton = screen.getByRole('button', { name: /confirm order/i });
   expect(confirmButton).toBeDisabled();
 });
 
@@ -40,7 +40,7 @@ test('Checkbox enables button on first click and disables on second click', () =
     name: /terms and conditions/i,
   });
 
-  const confirmButton = screen.getByRole('button', { name: /confirm oreder/i });
+  const confirmButton = screen.getByRole('button', { name: /confirm order/i });
 
   fireEvent.click(checkbox);
   expect(confirmButton).toBeEnabled();
